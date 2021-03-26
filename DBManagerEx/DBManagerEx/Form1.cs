@@ -111,6 +111,13 @@ namespace DBManagerEx
         private void sbTables_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             sbTables.Text = e.ClickedItem.Text;
+            RunSql($"select * from {sbTables.Text}");
+        }
+
+        private void ClearGrid()
+        {
+            dataGrid.Rows.Clear();
+            dataGrid.Columns.Clear();
         }
 
         public string GetToKen(int i, string src, char del)
@@ -121,15 +128,33 @@ namespace DBManagerEx
 
         private void RunSql(string Sql)
         {   // Select id, fCode from Facility
-            string ss = GetToKen(0, Sql.Trim().ToLower(), ' ');
-            sqlCom.CommandText = Sql;
-            if (ss == "select")
+            try
             {
-                SqlDataReader sr = sqlCom.ExecuteReader();
+              string ss = GetToKen(0, Sql.Trim().ToLower(), ' ');
+                sqlCom.CommandText = Sql;
+                if (ss == "select")
+                {
+                    ClearGrid();
+                    SqlDataReader sr = sqlCom.ExecuteReader();
+                    for(int i=0;i<sr.FieldCount;i++)
+                    {
+                        dataGrid.Columns.Add(sr.GetName(i), sr.GetName(i));
+                    }
+                    for(int k=0;sr.Read();k++)
+                    {
+                        object[] oArr = new object[sr.FieldCount];
+                        sr.GetValues(oArr);
+                        dataGrid.Rows.Add(oArr);
+                    }
+                }
+                else
+                {
+                    sqlCom.ExecuteNonQuery();
+                }
             }
-            else
+            catch(Exception e1)
             {
-                sqlCom.ExecuteNonQuery();
+                MessageBox.Show(e1.Message);
             }
         }
     }

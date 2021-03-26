@@ -57,7 +57,7 @@ namespace DBManagerEx
         private void mnuSaveCSV_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
-            StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+            StreamWriter sw = new StreamWriter(saveFileDialog1.FileName,false,Encoding.Default);
             string buf = "";
             for(int i=0;i<dataGrid.ColumnCount;i++)
             {

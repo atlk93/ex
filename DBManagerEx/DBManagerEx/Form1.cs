@@ -53,5 +53,19 @@ namespace DBManagerEx
             }
             sr.Close();
         }
+
+        private void mnuSaveCSV_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
+            StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+            string buf = "";
+            for(int i=0;i<dataGrid.ColumnCount;i++)
+            {
+                buf += dataGrid.Columns[i].HeaderText;
+                if (i < dataGrid.ColumnCount - 1) buf += ",";
+            }
+            sw.Write(buf+"\r\n");
+
+        }
     }
 }

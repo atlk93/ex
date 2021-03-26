@@ -40,7 +40,7 @@ namespace DBManagerEx
             this.closeDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.createTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,7 +98,7 @@ namespace DBManagerEx
             this.closeDatabaseToolStripMenuItem,
             this.toolStripMenuItem2,
             this.createTableToolStripMenuItem,
-            this.updateTableToolStripMenuItem,
+            this.mnuUpdate,
             this.toolStripMenuItem3,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -155,11 +155,12 @@ namespace DBManagerEx
             this.createTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createTableToolStripMenuItem.Text = "Create Table";
             // 
-            // updateTableToolStripMenuItem
+            // mnuUpdate
             // 
-            this.updateTableToolStripMenuItem.Name = "updateTableToolStripMenuItem";
-            this.updateTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.updateTableToolStripMenuItem.Text = "Update Table";
+            this.mnuUpdate.Name = "mnuUpdate";
+            this.mnuUpdate.Size = new System.Drawing.Size(180, 22);
+            this.mnuUpdate.Text = "Update Table";
+            this.mnuUpdate.Click += new System.EventHandler(this.mnuUpdate_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -187,30 +188,30 @@ namespace DBManagerEx
             // addColumnToolStripMenuItem
             // 
             this.addColumnToolStripMenuItem.Name = "addColumnToolStripMenuItem";
-            this.addColumnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.addColumnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addColumnToolStripMenuItem.Text = "Add Column";
             // 
             // addRowToolStripMenuItem
             // 
             this.addRowToolStripMenuItem.Name = "addRowToolStripMenuItem";
-            this.addRowToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.addRowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addRowToolStripMenuItem.Text = "Add Row";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(145, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
             // 
             // dropColumnToolStripMenuItem
             // 
             this.dropColumnToolStripMenuItem.Name = "dropColumnToolStripMenuItem";
-            this.dropColumnToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.dropColumnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dropColumnToolStripMenuItem.Text = "Drop Column";
             // 
             // dropRowToolStripMenuItem
             // 
             this.dropRowToolStripMenuItem.Name = "dropRowToolStripMenuItem";
-            this.dropRowToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.dropRowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dropRowToolStripMenuItem.Text = "Drop Row";
             // 
             // viewToolStripMenuItem
@@ -232,20 +233,20 @@ namespace DBManagerEx
             // runSqlToolStripMenuItem
             // 
             this.runSqlToolStripMenuItem.Name = "runSqlToolStripMenuItem";
-            this.runSqlToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.runSqlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.runSqlToolStripMenuItem.Text = "Run Sql";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
             // 
             // executeForEnterToolStripMenuItem
             // 
             this.executeForEnterToolStripMenuItem.Checked = true;
             this.executeForEnterToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.executeForEnterToolStripMenuItem.Name = "executeForEnterToolStripMenuItem";
-            this.executeForEnterToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.executeForEnterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.executeForEnterToolStripMenuItem.Text = "Execute for Enter";
             // 
             // helpToolStripMenuItem
@@ -333,6 +334,7 @@ namespace DBManagerEx
             this.dataGrid.RowTemplate.Height = 23;
             this.dataGrid.Size = new System.Drawing.Size(570, 263);
             this.dataGrid.TabIndex = 0;
+            this.dataGrid.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGrid_CellBeginEdit);
             // 
             // Form1
             // 
@@ -372,7 +374,7 @@ namespace DBManagerEx
         private System.Windows.Forms.ToolStripMenuItem closeDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem createTableToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateTableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuUpdate;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;

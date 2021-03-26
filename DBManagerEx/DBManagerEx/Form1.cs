@@ -146,6 +146,7 @@ namespace DBManagerEx
                         sr.GetValues(oArr);
                         dataGrid.Rows.Add(oArr);
                     }
+                    sr.Close();
                 }
                 else
                 {
@@ -155,6 +156,33 @@ namespace DBManagerEx
             catch(Exception e1)
             {
                 MessageBox.Show(e1.Message);
+            }
+        }
+
+        private void dataGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            dataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText = ".";
+        }
+
+        private void mnuUpdate_Click(object sender, EventArgs e)
+        {
+            for(int i=0;i<dataGrid.RowCount;i++)
+            {
+                for(int j=0;j<dataGrid.ColumnCount;j++)
+                {
+                    if (dataGrid.Rows[i].Cells[j].ToolTipText == ".")
+                    { // "update {TableName} set {currentCellHeader}={currentCellValue} where {idHeader}={id}";
+
+                        string tn = sbTables.Text;
+                        string ht = dataGrid.Columns[j].HeaderText;
+                        object cv = dataGrid.Rows[i].Cells[j].Value;
+                        string it = dataGrid.Columns[0].HeaderText;
+                        object id = dataGrid.Rows[i].Cells[0].Value;
+
+                        string sql = $"update {tn} set {ht}=N'{cv}' where {it}={id}";
+                        RunSql(sql);
+                    }
+                }
             }
         }
     }

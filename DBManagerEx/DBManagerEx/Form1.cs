@@ -66,6 +66,17 @@ namespace DBManagerEx
             }
             sw.Write(buf+"\r\n");
 
+            for(int k=0;k<dataGrid.RowCount;k++)
+            {
+                buf = "";
+                for (int i = 0; i < dataGrid.ColumnCount; i++)
+                {
+                    buf += dataGrid.Rows[k].Cells[i].Value;
+                    if (i < dataGrid.ColumnCount - 1) buf += ",";
+                }
+                sw.Write(buf + "\r\n");
+            }
+            sw.Close();
         }
     }
 }

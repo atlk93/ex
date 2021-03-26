@@ -33,13 +33,24 @@ namespace DBManagerEx
 
             sqlConn.Close();
         }
-        //수정수정수정
+        
         private void mnuMigration_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
             StreamReader sr = new StreamReader(openFileDialog1.FileName);
             string buf = sr.ReadLine();      // 첫번째 Line에는 각 Column의 Header Text가 들어가 있다
             string[] sArr = buf.Split(',');  // ........ ','로 구분
+            for(int i=0;i<sArr.Length;i++)
+            {
+                dataGrid.Columns.Add(sArr[i], sArr[i]);
+            }
+            while (true)
+            {
+                buf = sr.ReadLine();
+                if (buf == null) return;
+                sArr = buf.Split(',');  // string array
+                dataGrid.Rows.Add(sArr);    // Rows.Add ,mmethod의 4번째오버로드
+            }
         }
     }
 }

@@ -47,10 +47,11 @@ namespace DBManagerEx
             while (true)
             {
                 buf = sr.ReadLine();
-                if (buf == null) return;
+                if (buf == null) break;
                 sArr = buf.Split(',');  // string array
                 dataGrid.Rows.Add(sArr);    // Rows.Add ,mmethod의 4번째오버로드
             }
+            sr.Close();
         }
     }
 }

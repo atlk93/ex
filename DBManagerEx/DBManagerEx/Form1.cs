@@ -113,9 +113,24 @@ namespace DBManagerEx
             sbTables.Text = e.ClickedItem.Text;
         }
 
-        void Runsql(string Sql)
+        public string GetToKen(int i, string src, char del)
         {
+            string[] sArr = src.Split(del);
+            return sArr[i];
+        }
 
+        private void RunSql(string Sql)
+        {   // Select id, fCode from Facility
+            string ss = GetToKen(0, Sql.Trim().ToLower(), ' ');
+            sqlCom.CommandText = Sql;
+            if (ss == "select")
+            {
+                SqlDataReader sr = sqlCom.ExecuteReader();
+            }
+            else
+            {
+                sqlCom.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -26,10 +26,10 @@ namespace DBManagerEx
             dataGrid.Rows.Clear();          // db에서 클리어는 row먼저, 생성은 column먼저
             dataGrid.Columns.Clear();
 
-            sbPanel1.Text = "DB File name";
-            sbPanel2.Text = "Table List";
-            sbPanel2.DropDownItems.Clear();
-            sbPanel3.Text = "Initialized";
+            sbDBname.Text = "DB File name";
+            sbTables.Text = "Table List";
+            sbTables.DropDownItems.Clear();
+            sbMessage.Text = "Initialized";
 
             sqlConn.Close();
         }
@@ -77,6 +77,24 @@ namespace DBManagerEx
                 sw.Write(buf + "\r\n");
             }
             sw.Close();
+        }
+        string sCon = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=;Integrated Security=True;Connect Timeout=30";
+        private void mnuDBOpen_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
+            string[] sArr = sCon.Split(';');
+            sCon = $"{sArr[0]};{sArr[1]}{openFileDialog1.FileName};{sArr[2]};{sArr[3]}";
+            sqlConn.ConnectionString = sCon;
+            sqlConn.Open();
+            sqlCom.Connection = sqlConn;
+            sbDBname.Text = openFileDialog1.SafeFileName;
+            sbDBname.BackColor = Color.Honeydew;
+
+            DataTable dt = sqlConn.GetSchema("Tables");
+            for(int i=0;i<dt.Rows.Count;i++)
+            {
+                sbTables.DropDownItems.Add(dt.Rows[i].ItemArray[2].ToString());
+            }
         }
     }
 }

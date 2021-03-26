@@ -36,7 +36,7 @@ namespace DBManagerEx
             this.mnuMigration = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSaveCSV = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.openDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDBOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.closeDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.createTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,9 +56,9 @@ namespace DBManagerEx
             this.executeForEnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.sbPanel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sbPanel2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.sbPanel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sbDBname = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sbTables = new System.Windows.Forms.ToolStripDropDownButton();
+            this.sbMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -94,7 +94,7 @@ namespace DBManagerEx
             this.mnuMigration,
             this.mnuSaveCSV,
             this.toolStripMenuItem1,
-            this.openDatabaseToolStripMenuItem,
+            this.mnuDBOpen,
             this.closeDatabaseToolStripMenuItem,
             this.toolStripMenuItem2,
             this.createTableToolStripMenuItem,
@@ -131,11 +131,12 @@ namespace DBManagerEx
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
-            // openDatabaseToolStripMenuItem
+            // mnuDBOpen
             // 
-            this.openDatabaseToolStripMenuItem.Name = "openDatabaseToolStripMenuItem";
-            this.openDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openDatabaseToolStripMenuItem.Text = "Open Database ";
+            this.mnuDBOpen.Name = "mnuDBOpen";
+            this.mnuDBOpen.Size = new System.Drawing.Size(180, 22);
+            this.mnuDBOpen.Text = "Open Database ";
+            this.mnuDBOpen.Click += new System.EventHandler(this.mnuDBOpen_Click);
             // 
             // closeDatabaseToolStripMenuItem
             // 
@@ -256,39 +257,40 @@ namespace DBManagerEx
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sbPanel1,
-            this.sbPanel2,
-            this.sbPanel3});
+            this.sbDBname,
+            this.sbTables,
+            this.sbMessage});
             this.statusStrip1.Location = new System.Drawing.Point(0, 455);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(576, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // sbPanel1
+            // sbDBname
             // 
-            this.sbPanel1.Name = "sbPanel1";
-            this.sbPanel1.Size = new System.Drawing.Size(121, 17);
-            this.sbPanel1.Text = "toolStripStatusLabel1";
+            this.sbDBname.Name = "sbDBname";
+            this.sbDBname.Size = new System.Drawing.Size(121, 17);
+            this.sbDBname.Text = "toolStripStatusLabel1";
             // 
-            // sbPanel2
+            // sbTables
             // 
-            this.sbPanel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.sbPanel2.Image = ((System.Drawing.Image)(resources.GetObject("sbPanel2.Image")));
-            this.sbPanel2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.sbPanel2.Name = "sbPanel2";
-            this.sbPanel2.Size = new System.Drawing.Size(168, 20);
-            this.sbPanel2.Text = "toolStripDropDownButton1";
+            this.sbTables.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.sbTables.Image = ((System.Drawing.Image)(resources.GetObject("sbTables.Image")));
+            this.sbTables.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.sbTables.Name = "sbTables";
+            this.sbTables.Size = new System.Drawing.Size(168, 20);
+            this.sbTables.Text = "toolStripDropDownButton1";
             // 
-            // sbPanel3
+            // sbMessage
             // 
-            this.sbPanel3.Name = "sbPanel3";
-            this.sbPanel3.Size = new System.Drawing.Size(121, 17);
-            this.sbPanel3.Text = "toolStripStatusLabel2";
+            this.sbMessage.Name = "sbMessage";
+            this.sbMessage.Size = new System.Drawing.Size(121, 17);
+            this.sbMessage.Text = "toolStripStatusLabel2";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.ValidateNames = false;
             // 
             // splitContainer1
             // 
@@ -365,7 +367,7 @@ namespace DBManagerEx
         private System.Windows.Forms.ToolStripMenuItem mnuMigration;
         private System.Windows.Forms.ToolStripMenuItem mnuSaveCSV;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem openDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuDBOpen;
         private System.Windows.Forms.ToolStripMenuItem closeDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem createTableToolStripMenuItem;
@@ -387,9 +389,9 @@ namespace DBManagerEx
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.ToolStripStatusLabel sbPanel1;
-        private System.Windows.Forms.ToolStripDropDownButton sbPanel2;
-        private System.Windows.Forms.ToolStripStatusLabel sbPanel3;
+        private System.Windows.Forms.ToolStripStatusLabel sbDBname;
+        private System.Windows.Forms.ToolStripDropDownButton sbTables;
+        private System.Windows.Forms.ToolStripStatusLabel sbMessage;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGrid;

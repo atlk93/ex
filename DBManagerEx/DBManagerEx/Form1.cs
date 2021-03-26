@@ -33,7 +33,7 @@ namespace DBManagerEx
 
             sqlConn.Close();
         }
-        //ㅅ정
+        //수정수정수정
         private void mnuMigration_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;

@@ -278,8 +278,9 @@ namespace DBManagerEx
             this.sbTables.Image = ((System.Drawing.Image)(resources.GetObject("sbTables.Image")));
             this.sbTables.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sbTables.Name = "sbTables";
-            this.sbTables.Size = new System.Drawing.Size(168, 20);
-            this.sbTables.Text = "toolStripDropDownButton1";
+            this.sbTables.Size = new System.Drawing.Size(70, 20);
+            this.sbTables.Text = "Table List";
+            this.sbTables.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.sbTables_DropDownItemClicked);
             // 
             // sbMessage
             // 

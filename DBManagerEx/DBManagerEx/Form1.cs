@@ -82,19 +82,40 @@ namespace DBManagerEx
         private void mnuDBOpen_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
-            string[] sArr = sCon.Split(';');
-            sCon = $"{sArr[0]};{sArr[1]}{openFileDialog1.FileName};{sArr[2]};{sArr[3]}";
-            sqlConn.ConnectionString = sCon;
-            sqlConn.Open();
-            sqlCom.Connection = sqlConn;
-            sbDBname.Text = openFileDialog1.SafeFileName;
-            sbDBname.BackColor = Color.Honeydew;
-
-            DataTable dt = sqlConn.GetSchema("Tables");
-            for(int i=0;i<dt.Rows.Count;i++)
+            try
             {
-                sbTables.DropDownItems.Add(dt.Rows[i].ItemArray[2].ToString());
+                string[] sArr = sCon.Split(';');
+                sCon = $"{sArr[0]};{sArr[1]}{openFileDialog1.FileName};{sArr[2]};{sArr[3]}";
+                sqlConn.ConnectionString = sCon;
+                sqlConn.Open();
+                sqlCom.Connection = sqlConn;
+                sbDBname.Text = openFileDialog1.SafeFileName;
+                sbDBname.BackColor = Color.DarkOliveGreen;
+
+                DataTable dt = sqlConn.GetSchema("Tables");
+                for(int i=0;i<dt.Rows.Count;i++)
+                {
+                    sbTables.DropDownItems.Add(dt.Rows[i].ItemArray[2].ToString());
+                }
+                sbMessage.Text = "Success";
+                sbMessage.BackColor = Color.Gray;
             }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message, "Error");
+                sbMessage.Text = "Error";
+                sbMessage.BackColor = Color.Red;
+            }
+        }
+
+        private void sbTables_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            sbTables.Text = e.ClickedItem.Text;
+        }
+
+        void Runsql(string Sql)
+        {
+
         }
     }
 }
